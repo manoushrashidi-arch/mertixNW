@@ -9,7 +9,6 @@
     <style>
         html { scroll-behavior: smooth; }
         body { background-color: #0b0f19; color: #ffffff; font-family: 'Inter', sans-serif; }
-        .glow-green { box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
         .glass-panel { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
@@ -27,14 +26,15 @@
             </div>
             
             <div class="flex flex-wrap items-center gap-2 bg-slate-900/80 p-1.5 rounded-xl border border-slate-800 text-sm font-medium">
-                <a href="#hero" class="px-4 py-2 rounded-lg bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition">Ana Sayfa</a>
-                <a href="#status" class="px-4 py-2 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white transition">Sunucu Durumu</a>
-                <a href="#staff" class="px-4 py-2 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white transition">Kadro</a>
-                <a href="#rules" class="px-4 py-2 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white transition">Kurallar</a>
-                <a href="#apply" class="px-4 py-2 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white transition">Başvuru Formu</a>
+                <a href="#hero" class="px-3 py-2 rounded-lg bg-emerald-500/20 text-emerald-400">Ana Sayfa</a>
+                <a href="#status" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Durum & Oyuncular</a>
+                <a href="#auth" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Giriş / Kayıt</a>
+                <a href="#staff" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Kadro</a>
+                <a href="#rules" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Kurallar</a>
+                <a href="#apply" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Başvuru</a>
             </div>
 
-            <button onclick="copyIP()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-5 py-2.5 rounded-xl transition flex items-center space-x-2 shadow-lg shadow-emerald-500/20">
+            <button onclick="copyIP()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-5 py-2.5 rounded-xl transition flex items-center space-x-2">
                 <i class="fa-solid fa-copy"></i>
                 <span>IP KOPYALA</span>
             </button>
@@ -50,14 +50,13 @@
 
         <h2 class="text-6xl font-black mb-6 tracking-tight">MERTIX <span class="text-emerald-400">NW</span></h2>
         <p class="text-slate-400 max-w-2xl mx-auto text-lg mb-10 leading-relaxed">
-            Kesintisiz Minecraft deneyimi, gelişmiş sistemler ve adil yetkili ekibi! Arkadaşlarınla birlikte maceraya katıl, kendi alanını inşa et ve en güçlü sen ol.
+            Kesintisiz Minecraft deneyimi, gelişmiş sistemler ve adil yetkili ekibiyle sen de hemen yerini al!
         </p>
 
         <div class="flex flex-wrap justify-center items-center gap-4">
             <div class="bg-slate-900 border border-slate-800 px-6 py-3.5 rounded-xl font-mono text-emerald-400 flex items-center space-x-3">
                 <i class="fa-solid fa-server"></i>
                 <span>Mertix.aternos.me</span>
-                <span class="text-xs text-slate-500 font-sans border-l border-slate-700 pl-3">JAVA / BEDROCK</span>
             </div>
             <button onclick="copyIP()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3.5 rounded-xl transition flex items-center space-x-2">
                 <i class="fa-solid fa-paste"></i>
@@ -66,27 +65,71 @@
         </div>
     </section>
 
-    <!-- STATUS SECTION -->
+    <!-- STATUS & PLAYER STATS SECTION -->
     <section id="status" class="max-w-7xl mx-auto px-6 py-12">
         <div class="glass-panel p-8 rounded-2xl">
             <h3 class="text-2xl font-bold mb-6 flex items-center space-x-3">
                 <i class="fa-solid fa-signal text-emerald-400"></i>
-                <span>Canlı Sunucu Durumu</span>
+                <span>Canlı Sunucu İstatistikleri</span>
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
-                    <p class="text-slate-400 text-sm mb-1">Durum</p>
+                    <p class="text-slate-400 text-sm mb-1">Sunucu Durumu</p>
                     <p id="server-online" class="text-xl font-bold text-yellow-400">Yükleniyor...</p>
                 </div>
                 <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
-                    <p class="text-slate-400 text-sm mb-1">Aktif Oyuncu</p>
+                    <p class="text-slate-400 text-sm mb-1">Aktif Oyuncu Sayısı</p>
                     <p id="server-players" class="text-xl font-bold text-white">0 / 0</p>
                 </div>
                 <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
-                    <p class="text-slate-400 text-sm mb-1">Sürüm</p>
+                    <p class="text-slate-400 text-sm mb-1">Oyun Sürümü</p>
                     <p id="server-version" class="text-xl font-bold text-emerald-400">1.16.5 - 1.20.x</p>
                 </div>
             </div>
+
+            <!-- Online Player Names List -->
+            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800">
+                <h4 class="text-lg font-bold mb-4 text-emerald-400"><i class="fa-solid fa-users mr-2"></i>Oyunda Olan Oyuncular</h4>
+                <div id="player-list-box" class="flex flex-wrap gap-2 text-slate-300">
+                    <span class="text-slate-500 italic">Şu an sunucuda kimse yok veya sunucu kapalı.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIGN IN / SIGN UP SECTION -->
+    <section id="auth" class="max-w-7xl mx-auto px-6 py-12">
+        <div class="max-w-md mx-auto glass-panel p-8 rounded-2xl">
+            <div class="flex justify-center mb-6 space-x-4 border-b border-slate-800 pb-4">
+                <button onclick="switchTab('signin')" id="btn-signin" class="font-bold text-emerald-400 pb-2 border-b-2 border-emerald-400">Giriş Yap</button>
+                <button onclick="switchTab('signup')" id="btn-signup" class="font-bold text-slate-400 pb-2">Kayıt Ol</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <form id="form-signin" onsubmit="handleAuth(event, 'Giriş')" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Kullanıcı Adı</label>
+                    <input type="text" required placeholder="Minecraft Adın" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Şifre</label>
+                    <input type="password" required placeholder="******" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl transition">GİRİŞ YAP</button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="form-signup" onsubmit="handleAuth(event, 'Kayıt')" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Minecraft Kullanıcı Adı</label>
+                    <input type="text" required placeholder="Karakter Adın" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Şifre Belirle</label>
+                    <input type="password" required placeholder="******" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl transition">KAYIT OL</button>
+            </form>
         </div>
     </section>
 
@@ -96,15 +139,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-blue-500">
                 <h4 class="text-xl font-bold text-blue-400 mb-2"><i class="fa-solid fa-user-shield mr-2"></i>Rehber</h4>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                    Oyunculara sohbet üzerinden yardım etmek, soruları yanıtlamak ve düzeni sağlamakla yükümlüdür.
-                </p>
+                <p class="text-slate-300 text-sm">Oyunculara rehberlik eder ve düzeni sağlar.</p>
             </div>
             <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-purple-500">
-                <h4 class="text-xl font-bold text-purple-400 mb-2"><i class="fa-solid fa-code mr-2"></i>Geliştirici (Developer)</h4>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                    Eklentileri (plugin) düzenlemek, hataları çözmek ve sunucuya yeni özellikler kazandırmaktan sorumludur.
-                </p>
+                <h4 class="text-xl font-bold text-purple-400 mb-2"><i class="fa-solid fa-code mr-2"></i>Geliştirici</h4>
+                <p class="text-slate-300 text-sm">Sunucu eklentilerini ve sistemlerini yönetir.</p>
             </div>
         </div>
     </section>
@@ -112,20 +151,11 @@
     <!-- RULES SECTION -->
     <section id="rules" class="max-w-7xl mx-auto px-6 py-12">
         <div class="glass-panel p-8 rounded-2xl">
-            <h3 class="text-2xl font-bold mb-6 text-center text-emerald-400"><i class="fa-solid fa-book-bookmark mr-2"></i>Sunucu Kuralları</h3>
-            <ul class="space-y-4 text-slate-300">
-                <li class="flex items-start space-x-3 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <i class="fa-solid fa-circle-xmark text-red-400 mt-1"></i>
-                    <span>Hile, 3. parti yazılım veya haksız avantaj sağlayan istemciler (client) kullanmak kesinlikle yasaktır.</span>
-                </li>
-                <li class="flex items-start space-x-3 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <i class="fa-solid fa-circle-xmark text-red-400 mt-1"></i>
-                    <span>Sohbette küfür, hakaret, argo, siyaset ve reklam yapmak yasaktır.</span>
-                </li>
-                <li class="flex items-start space-x-3 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <i class="fa-solid fa-circle-xmark text-red-400 mt-1"></i>
-                    <span>Sunucu açıklarından (bug) faydalanmak yasaktır. Tespit edilen açıklar yetkililere bildirilmelidir.</span>
-                </li>
+            <h3 class="text-2xl font-bold mb-6 text-center text-emerald-400">Sunucu Kuralları</h3>
+            <ul class="space-y-3 text-slate-300 text-sm">
+                <li class="bg-slate-950 p-3 rounded-xl border border-slate-800">1. Hile ve 3. parti yazılım kullanmak kesinlikle yasaktır.</li>
+                <li class="bg-slate-950 p-3 rounded-xl border border-slate-800">2. Sohbette küfür, argo ve reklam yapmak yasaktır.</li>
+                <li class="bg-slate-950 p-3 rounded-xl border border-slate-800">3. Bug ve açıkların kullanımı yasaktır.</li>
             </ul>
         </div>
     </section>
@@ -134,28 +164,46 @@
     <section id="apply" class="max-w-7xl mx-auto px-6 py-12">
         <div class="glass-panel p-8 rounded-2xl text-center">
             <h3 class="text-2xl font-bold mb-4">Yetkili Başvurusu</h3>
-            <p class="text-slate-400 mb-6">Mertix NW ekibine katılmak ister misin? Aşağıdaki formu doldurarak başvurabilirsin!</p>
-            <a href="https://docs.google.com/forms/d/1be7J8w22W2bLJfD7i0xtgop2sUv832KAivkw-Xxsc5c/edit" target="_blank" class="inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-4 rounded-xl transition shadow-lg shadow-emerald-500/20">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>BAŞVURU FORMUNA GİT</span>
+            <p class="text-slate-400 mb-6">Ekibimize katılmak için hemen başvuru formunu doldur!</p>
+            <a href="https://docs.google.com/forms/d/1be7J8w22W2bLJfD7i0xtgop2sUv832KAivkw-Xxsc5c/edit" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-4 rounded-xl transition inline-block">
+                BAŞVURU FORMUNA GİT
             </a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
         <p>&copy; 2026 Mertix NW. Tüm hakları saklıdır.</p>
     </footer>
 
-    <!-- JAVASCRIPT (IP KOPYALAMA VE CANLI STATUS) -->
+    <!-- JAVASCRIPT -->
     <script>
         function copyIP() {
-            const ip = "Mertix.aternos.me";
-            navigator.clipboard.writeText(ip).then(() => {
-                alert("Sunucu IP adresi kopyalandı: " + ip);
-            }).catch(err => {
-                console.error('Kopyalama hatası:', err);
-            });
+            navigator.clipboard.writeText("Mertix.aternos.me");
+            alert("Sunucu IP adresi kopyalandı!");
+        }
+
+        function switchTab(tab) {
+            const signinForm = document.getElementById('form-signin');
+            const signupForm = document.getElementById('form-signup');
+            const btnSignin = document.getElementById('btn-signin');
+            const btnSignup = document.getElementById('btn-signup');
+
+            if(tab === 'signin') {
+                signinForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                btnSignin.className = "font-bold text-emerald-400 pb-2 border-b-2 border-emerald-400";
+                btnSignup.className = "font-bold text-slate-400 pb-2";
+            } else {
+                signupForm.classList.remove('hidden');
+                signinForm.classList.add('hidden');
+                btnSignup.className = "font-bold text-emerald-400 pb-2 border-b-2 border-emerald-400";
+                btnSignin.className = "font-bold text-slate-400 pb-2";
+            }
+        }
+
+        function handleAuth(event, type) {
+            event.preventDefault();
+            alert(type + " işlemi başarıyla simüle edildi! (Not: GitHub Pages statik olduğundan veriler sunucuda saklanmaz)");
         }
 
         async function fetchServerStatus() {
@@ -164,6 +212,7 @@
             const statusOnline = document.getElementById('server-online');
             const statusPlayers = document.getElementById('server-players');
             const statusVersion = document.getElementById('server-version');
+            const playerListBox = document.getElementById('player-list-box');
 
             try {
                 const response = await fetch('https://api.mcsrvstat.us/2/Mertix.aternos.me');
@@ -171,32 +220,33 @@
 
                 if (data.online) {
                     heroDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping";
-                    heroText.textContent = "Dünyanın EN iyi ATERNOS SUNUCULARINDAN BİRİ";
-                    heroText.className = "text-emerald-400 font-bold";
-
+                    heroText.textContent = "ATERNOS SUNUCU AKTİF";
                     statusOnline.textContent = "ÇEVRİMİÇİ";
                     statusOnline.className = "text-xl font-bold text-emerald-400";
                     statusPlayers.textContent = `${data.players.online} / ${data.players.max}`;
                     if(data.version) statusVersion.textContent = data.version;
+
+                    // Oyuncu İsimleri Listesi
+                    if (data.players && data.players.list && data.players.list.length > 0) {
+                        playerListBox.innerHTML = data.players.list.map(name => `<span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 text-emerald-400 font-mono text-sm">${name}</span>`).join('');
+                    } else {
+                        playerListBox.innerHTML = '<span class="text-slate-400 italic">Sunucu aktif ancak şu an oyunda kimse yok.</span>';
+                    }
                 } else {
                     heroDot.className = "w-2.5 h-2.5 rounded-full bg-red-500";
-                    heroText.textContent = "SUNUCU KAPALI / ÇEVRİMDIŞI";
-                    heroText.className = "text-red-400 font-bold";
-
+                    heroText.textContent = "SUNUCU KAPALI";
                     statusOnline.textContent = "ÇEVRİMDIŞI";
                     statusOnline.className = "text-xl font-bold text-red-500";
                     statusPlayers.textContent = "0 / 0";
+                    playerListBox.innerHTML = '<span class="text-slate-500 italic">Sunucu kapalı olduğu için oyuncular listelenemiyor.</span>';
                 }
             } catch (error) {
                 console.error("Status error:", error);
                 heroText.textContent = "DURUM ALINAMADI";
-                statusOnline.textContent = "BİLİNMİYOR";
             }
         }
 
-        // Sayfa yüklendiğinde çalıştır
         fetchServerStatus();
-        // Her 30 saniyede bir otomatik güncelle
         setInterval(fetchServerStatus, 30000);
     </script>
 </body>
