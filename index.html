@@ -29,10 +29,7 @@
                 <a href="#hero" class="px-3 py-2 rounded-lg bg-emerald-500/20 text-emerald-400">Ana Sayfa</a>
                 <a href="#status" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Durum</a>
                 <a href="#staff" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Kadro</a>
-                <a href="#discord" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Discord</a>
-                <a href="#vote" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Oy Ver</a>
                 <a href="#rules" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Kurallar</a>
-                <a href="#faq" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">SSS</a>
                 <a href="#apply" class="px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300">Başvuru</a>
             </div>
 
@@ -99,40 +96,6 @@
         </div>
     </section>
 
-    <!-- SIGN IN / SIGN UP SECTION -->
-    <section id="auth" class="max-w-7xl mx-auto px-6 py-12">
-        <div class="max-w-md mx-auto glass-panel p-8 rounded-2xl">
-            <div class="flex justify-center mb-6 space-x-4 border-b border-slate-800 pb-4">
-                <button onclick="switchTab('signin')" id="btn-signin" class="font-bold text-emerald-400 pb-2 border-b-2 border-emerald-400">Giriş Yap</button>
-                <button onclick="switchTab('signup')" id="btn-signup" class="font-bold text-slate-400 pb-2">Kayıt Ol</button>
-            </div>
-
-            <form id="form-signin" onsubmit="handleAuth(event, 'Giriş')" class="space-y-4">
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">Kullanıcı Adı</label>
-                    <input type="text" required placeholder="Minecraft Adın" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">Şifre</label>
-                    <input type="password" required placeholder="******" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl transition">GİRİŞ YAP</button>
-            </form>
-
-            <form id="form-signup" onsubmit="handleAuth(event, 'Kayıt')" class="space-y-4 hidden">
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">Minecraft Kullanıcı Adı</label>
-                    <input type="text" required placeholder="Karakter Adın" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">Şifre Belirle</label>
-                    <input type="password" required placeholder="******" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl transition">KAYIT OL</button>
-            </form>
-        </div>
-    </section>
-
     <!-- STAFF SECTION -->
     <section id="staff" class="max-w-7xl mx-auto px-6 py-12">
         <h3 class="text-3xl font-extrabold mb-8 text-center">KADRO & SORUMLULUKLAR</h3>
@@ -148,37 +111,6 @@
         </div>
     </section>
 
-    <!-- DISCORD SECTION -->
-    <section id="discord" class="max-w-7xl mx-auto px-6 py-12">
-        <div class="glass-panel p-8 rounded-2xl text-center bg-gradient-to-r from-indigo-950/40 via-slate-900 to-indigo-950/40 border border-indigo-500/20">
-            <i class="fa-brands fa-discord text-5xl text-indigo-400 mb-4"></i>
-            <h3 class="text-2xl font-bold mb-2">Discord Topluluğumuza Katıl!</h3>
-            <p class="text-slate-400 max-w-xl mx-auto text-sm mb-6">Etkinliklerden haberdar olmak, güncellemeleri takip etmek ve destek almak için resmi Discord sunucumuza gel.</p>
-            <a href="https://discord.gg/SENIN_DISCORD_DAVETIN" target="_blank" class="inline-flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-3.5 rounded-xl transition shadow-lg shadow-indigo-600/30">
-                <i class="fa-brands fa-discord"></i>
-                <span>DİSCORD'A KATIL</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- VOTE SECTION -->
-    <section id="vote" class="max-w-7xl mx-auto px-6 py-12">
-        <div class="glass-panel p-8 rounded-2xl">
-            <h3 class="text-2xl font-bold mb-2 text-center text-emerald-400">Sunucuya Oy Ver</h3>
-            <p class="text-slate-400 mb-6 text-center text-sm">Sunucumuza oy vererek büyümemize destek ol ve oyun içi ödüller kazan!</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                <a href="#" target="_blank" class="bg-slate-950 hover:bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between transition group">
-                    <span class="font-bold text-slate-200 group-hover:text-emerald-400"><i class="fa-solid fa-check-to-slot mr-2 text-emerald-400"></i> Oy Sitesi 1</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-500 group-hover:text-emerald-400"></i>
-                </a>
-                <a href="#" target="_blank" class="bg-slate-950 hover:bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between transition group">
-                    <span class="font-bold text-slate-200 group-hover:text-emerald-400"><i class="fa-solid fa-check-to-slot mr-2 text-emerald-400"></i> Oy Sitesi 2</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-500 group-hover:text-emerald-400"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- RULES SECTION -->
     <section id="rules" class="max-w-7xl mx-auto px-6 py-12">
         <div class="glass-panel p-8 rounded-2xl">
@@ -188,27 +120,6 @@
                 <li class="bg-slate-950 p-3 rounded-xl border border-slate-800">2. Sohbette küfür, argo ve reklam yapmak yasaktır.</li>
                 <li class="bg-slate-950 p-3 rounded-xl border border-slate-800">3. Bug ve açıkların kullanımı yasaktır.</li>
             </ul>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION (SSS) -->
-    <section id="faq" class="max-w-7xl mx-auto px-6 py-12">
-        <div class="glass-panel p-8 rounded-2xl">
-            <h3 class="text-2xl font-bold mb-6 text-center text-emerald-400">Sıkça Sorulan Sorular</h3>
-            <div class="space-y-4 max-w-3xl mx-auto text-sm">
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <h4 class="font-bold text-white mb-1"><i class="fa-solid fa-circle-question text-emerald-400 mr-2"></i>Sunucuya nasıl giriş yapabilirim?</h4>
-                    <p class="text-slate-400">Minecraft Java sürümünü açıp Çok Oyunculu bölümünden IP adresimizi (<code class="text-emerald-400 font-mono">Mertix.aternos.me</code>) yazarak giriş yapabilirsin.</p>
-                </div>
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <h4 class="font-bold text-white mb-1"><i class="fa-solid fa-circle-question text-emerald-400 mr-2"></i>Yetkili başvurusunu nereden yapabilirim?</h4>
-                    <p class="text-slate-400">Sitenin en alt kısmındaki "Yetkili Başvurusu" formunu doldurarak doğrudan mail yoluyla ekibimize başvurabilirsin.</p>
-                </div>
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <h4 class="font-bold text-white mb-1"><i class="fa-solid fa-circle-question text-emerald-400 mr-2"></i>Hangi sürümleri destekliyor?</h4>
-                    <p class="text-slate-400">Sunucumuz <code class="text-emerald-400 font-mono">1.16.5 - 1.21x</code> sürümleri arasındaki tüm sürümlerle uyumludur.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -255,30 +166,6 @@
             alert("Sunucu IP adresi kopyalandı: Mertix.aternos.me");
         }
 
-        function switchTab(tab) {
-            const btnSignin = document.getElementById('btn-signin');
-            const btnSignup = document.getElementById('btn-signup');
-            const formSignin = document.getElementById('form-signin');
-            const formSignup = document.getElementById('form-signup');
-
-            if (tab === 'signin') {
-                btnSignin.className = "font-bold text-emerald-400 pb-2 border-b-2 border-emerald-400";
-                btnSignup.className = "font-bold text-slate-400 pb-2";
-                formSignin.classList.remove('hidden');
-                formSignup.classList.add('hidden');
-            } else {
-                btnSignup.className = "font-bold text-emerald-400 pb-2 border-b-2 border-emerald-400";
-                btnSignin.className = "font-bold text-slate-400 pb-2";
-                formSignup.classList.remove('hidden');
-                formSignin.classList.add('hidden');
-            }
-        }
-
-        function handleAuth(event, type) {
-            event.preventDefault();
-            alert(`${type} işlemi simüle edildi.`);
-        }
-
         async function fetchServerStatus() {
             const heroDot = document.getElementById('hero-status-dot');
             const heroText = document.getElementById('hero-status-text');
@@ -288,7 +175,6 @@
             const playerListBox = document.getElementById('player-list-box');
 
             try {
-                // ?cache=false ile anlık güncel durum çekiliyor
                 const response = await fetch('https://api.mcstatus.io/v2/status/java/Mertix.aternos.me?cache=false');
                 const data = await response.json();
 
@@ -342,12 +228,4 @@
                     statusOnline.className = "text-xl font-bold text-red-500";
                 }
                 if(statusPlayers) statusPlayers.textContent = "0 / 20";
-                if(statusVersion) statusVersion.textContent = "1.16.5 - 1.21x";
-            }
-        }
-
-        fetchServerStatus();
-        setInterval(fetchServerStatus, 15000);
-    </script>
-</body>
-</html>
+                if(statusVersion) statusVersion.textContent = "1.1
