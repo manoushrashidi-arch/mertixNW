@@ -194,6 +194,10 @@
 
     <!-- JAVASCRIPT -->
     <script>
+        function copyIP() {
+            navigator.clipboard.writeText("Mertix.aternos.me");
+            alert("Sunucu IP adresi kopyalandı: Mertix.aternos.me");
+        }
         function handleApply(event) {
             event.preventDefault();
             alert("Başvurunuz başarıyla alındı! Ekibimiz tarafından incelenecektir.");
