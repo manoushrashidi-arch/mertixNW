@@ -156,16 +156,35 @@
                 <li class="bg-slate-950 p-3 rounded-xl border border-slate-800">3. Bug ve açıkların kullanımı yasaktır.</li>
             </ul>
         </div>
-    </section>
-
-    <!-- APPLY SECTION -->
+   <!-- APPLY SECTION -->
     <section id="apply" class="max-w-7xl mx-auto px-6 py-12">
-        <div class="glass-panel p-8 rounded-2xl text-center">
-            <h3 class="text-2xl font-bold mb-4">Yetkili Başvurusu</h3>
-            <p class="text-slate-400 mb-6">Ekibimize katılmak için hemen başvuru formunu doldur!</p>
-            <a href="https://docs.google.com/forms/d/1be7J8w22W2bLJfD7i0xtgop2sUv832KAivkw-Xxsc5c/edit" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-4 rounded-xl transition inline-block">
-                BAŞVURU FORMUNA GİT
-            </a>
+        <div class="max-w-xl mx-auto glass-panel p-8 rounded-2xl">
+            <h3 class="text-2xl font-bold mb-2 text-center">Yetkili Başvurusu</h3>
+            <p class="text-slate-400 mb-6 text-center text-sm">Ekibimize katılmak için formu doğrudan buradan doldurabilirsin!</p>
+            
+            <form onsubmit="handleApply(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Minecraft Kullanıcı Adın</label>
+                    <input type="text" required placeholder="Oyundaki adın" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Yaşın</label>
+                    <input type="number" required placeholder="Yaşın" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Başvurmak İstediğin Yetki</label>
+                    <select class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500">
+                        <option class="bg-slate-900">Rehber</option>
+                        <option class="bg-slate-900">Moderatör</option>
+                        <option class="bg-slate-900">Geliştirici</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Neden seni seçmeliyiz?</label>
+                    <textarea rows="3" required placeholder="Kendinden ve tecrübelerinden bahset..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl transition">BAŞVURUYU GÖNDER</button>
+            </form>
         </div>
     </section>
 
@@ -175,33 +194,10 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        function copyIP() {
-            navigator.clipboard.writeText("Mertix.aternos.me");
-            alert("Sunucu IP adresi kopyalandı!");
-        }
-
-        function switchTab(tab) {
-            const signinForm = document.getElementById('form-signin');
-            const signupForm = document.getElementById('form-signup');
-            const btnSignin = document.getElementById('btn-signin');
-            const btnSignup = document.getElementById('btn-signup');
-
-            if(tab === 'signin') {
-                signinForm.classList.remove('hidden');
-                signupForm.classList.add('hidden');
-                btnSignin.className = "font-bold text-emerald-400 pb-2 border-b-2 border-emerald-400";
-                btnSignup.className = "font-bold text-slate-400 pb-2";
-            } else {
-                signupForm.classList.remove('hidden');
-                signinForm.classList.add('hidden');
-                btnSignup.className = "font-bold text-emerald-400 pb-2 border-b-2 border-emerald-400";
-                btnSignin.className = "font-bold text-slate-400 pb-2";
-            }
-        }
-
-        function handleAuth(event, type) {
+        function handleApply(event) {
             event.preventDefault();
-            alert(type + " işlemi başarıyla simüle edildi!");
+            alert("Başvurunuz başarıyla alındı! Ekibimiz tarafından incelenecektir.");
+            event.target.reset();
         }
 
         async function fetchServerStatus() {
