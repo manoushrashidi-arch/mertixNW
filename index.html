@@ -52,8 +52,8 @@
     <!-- HERO SECTION -->
     <section id="hero" class="max-w-7xl mx-auto px-6 py-16 text-center">
         <div class="inline-flex items-center space-x-2 bg-slate-900/90 border border-slate-800 px-4 py-2 rounded-full text-xs font-semibold mb-8">
-            <span id="hero-status-dot" class="w-2.5 h-2.5 rounded-full bg-yellow-500 animate-pulse"></span>
-            <span id="hero-status-text" class="text-yellow-400 font-bold">KONTROL EDİLİYOR...</span>
+            <span id="hero-status-dot" class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+            <span id="hero-status-text" class="text-red-400 font-bold">ÇEVRİMDIŞI</span>
         </div>
 
         <h2 class="text-6xl font-black mb-6 tracking-tight">MERTIX <span class="text-emerald-400">NW</span></h2>
@@ -83,7 +83,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
                     <p class="text-slate-400 text-sm mb-1">Sunucu Durumu</p>
-                    <p id="server-online" class="text-xl font-bold text-yellow-400">Yükleniyor...</p>
+                    <p id="server-online" class="text-xl font-bold text-red-500">ÇEVRİMDIŞI</p>
                 </div>
                 <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
                     <p class="text-slate-400 text-sm mb-1">Aktif Oyuncu Sayısı</p>
@@ -99,7 +99,7 @@
             <div class="bg-slate-950 p-6 rounded-xl border border-slate-800">
                 <h4 class="text-lg font-bold mb-4 text-emerald-400"><i class="fa-solid fa-users mr-2"></i>Oyunda Olan Oyuncular</h4>
                 <div id="player-list-box" class="flex flex-wrap gap-2 text-slate-300">
-                    <span class="text-slate-500 italic">Sunucu durumu kontrol ediliyor...</span>
+                    <span class="text-slate-500 italic">Sunucu kapalı olduğu için oyuncular listelenemiyor.</span>
                 </div>
             </div>
         </div>
@@ -246,105 +246,50 @@
             event.target.reset();
         }
 
-        // Arayüzü güncelleme yardımcı fonksiyonları
-        function uiOffline() {
-            const heroDot = document.getElementById('hero-status-dot');
-            const heroText = document.getElementById('hero-status-text');
-            const statusOnline = document.getElementById('server-online');
-            const statusPlayers = document.getElementById('server-players');
-            const statusVersion = document.getElementById('server-version');
-            const playerListBox = document.getElementById('player-list-box');
-
-            if(heroDot) heroDot.className = "w-2.5 h-2.5 rounded-full bg-red-500";
-            if(heroText) { heroText.textContent = "ÇEVRİMDIŞI"; heroText.className = "text-red-400 font-bold"; }
-            if(statusOnline) { statusOnline.textContent = "ÇEVRİMDIŞI"; statusOnline.className = "text-xl font-bold text-red-500"; }
-            if(statusPlayers) statusPlayers.textContent = "0 / 20";
-            if(statusVersion) statusVersion.textContent = "1.16.5 - 1.21x";
-            if(playerListBox) playerListBox.innerHTML = '<span class="text-slate-500 italic">Sunucu kapalı olduğu için oyuncular listelenemiyor.</span>';
-        }
-
-        function uiStarting() {
-            const heroDot = document.getElementById('hero-status-dot');
-            const heroText = document.getElementById('hero-status-text');
-            const statusOnline = document.getElementById('server-online');
-            const statusPlayers = document.getElementById('server-players');
-            const playerListBox = document.getElementById('player-list-box');
-
-            if(heroDot) heroDot.className = "w-2.5 h-2.5 rounded-full bg-yellow-500 animate-pulse";
-            if(heroText) { heroText.textContent = "BAŞLATILIYOR..."; heroText.className = "text-yellow-400 font-bold"; }
-            if(statusOnline) { statusOnline.textContent = "BAŞLATILIYOR..."; statusOnline.className = "text-xl font-bold text-yellow-400"; }
-            if(statusPlayers) statusPlayers.textContent = "0 / 20";
-            if(playerListBox) playerListBox.innerHTML = '<span class="text-yellow-400/80 italic">Sunucu sıraya alındı veya başlatılıyor...</span>';
-        }
-
-        function uiOnline(playersOnline, playersMax, versionStr, playerList) {
-            const heroDot = document.getElementById('hero-status-dot');
-            const heroText = document.getElementById('hero-status-text');
-            const statusOnline = document.getElementById('server-online');
-            const statusPlayers = document.getElementById('server-players');
-            const statusVersion = document.getElementById('server-version');
-            const playerListBox = document.getElementById('player-list-box');
-
-            if(heroDot) heroDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping";
-            if(heroText) { heroText.textContent = "ÇEVRİMİÇİ"; heroText.className = "text-emerald-400 font-bold"; }
-            if(statusOnline) { statusOnline.textContent = "ÇEVRİMİÇİ"; statusOnline.className = "text-xl font-bold text-emerald-400"; }
-            if(statusPlayers) statusPlayers.textContent = `${playersOnline} / ${playersMax}`;
-            if(statusVersion) statusVersion.textContent = versionStr || "1.16.5 - 1.21x";
-
-            if (playerListBox) {
-                if (playerList && playerList.length > 0) {
-                    playerListBox.innerHTML = playerList.map(p => `<span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 text-emerald-400 font-mono text-sm">${p}</span>`).join('');
-                } else {
-                    playerListBox.innerHTML = '<span class="text-slate-400 italic">Sunucu aktif ancak şu an oyunda kimse yok.</span>';
-                }
-            }
-        }
-
         async function fetchServerStatus() {
-            const timeStamp = Date.now();
-            
-            // 1. Birincil API (mcstatus.io)
-            try {
-                const res = await fetch(`https://api.mcstatus.io/v2/status/java/Mertix.aternos.me?t=${timeStamp}`);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data && data.online === true) {
-                        let motd = data.motd?.clean ? (Array.isArray(data.motd.clean) ? data.motd.clean.join(" ") : data.motd.clean).toLowerCase() : "";
-                        if (motd.includes("offline") || motd.includes("starting") || motd.includes("aternos") || data.players?.max === 0) {
-                            uiStarting();
-                            return;
-                        }
-                        const pList = data.players?.list?.map(p => p.name_clean || p.name || p) || [];
-                        uiOnline(data.players?.online || 0, data.players?.max || 20, data.version?.name_clean, pList);
-                        return;
-                    }
-                }
-            } catch (e) {
-                console.log("API 1 pas geçildi, yedek deneniyor...");
+            const heroDot = document.getElementById('hero-status-dot');
+            const heroText = document.getElementById('hero-status-text');
+            const statusOnline = document.getElementById('server-online');
+            const statusPlayers = document.getElementById('server-players');
+            const statusVersion = document.getElementById('server-version');
+            const playerListBox = document.getElementById('player-list-box');
+
+            function setOffline() {
+                if(heroDot) heroDot.className = "w-2.5 h-2.5 rounded-full bg-red-500";
+                if(heroText) { heroText.textContent = "ÇEVRİMDIŞI"; heroText.className = "text-red-400 font-bold"; }
+                if(statusOnline) { statusOnline.textContent = "ÇEVRİMDIŞI"; statusOnline.className = "text-xl font-bold text-red-500"; }
+                if(statusPlayers) statusPlayers.textContent = "0 / 20";
+                if(statusVersion) statusVersion.textContent = "1.16.5 - 1.21x";
+                if(playerListBox) playerListBox.innerHTML = '<span class="text-slate-500 italic">Sunucu kapalı durumda.</span>';
             }
 
-            // 2. Yedek API (mcsrvstat.us)
             try {
-                const res2 = await fetch(`https://api.mcsrvstat.us/3/Mertix.aternos.me?t=${timeStamp}`);
-                if (res2.ok) {
-                    const data2 = await res2.json();
-                    if (data2 && data2.online === true) {
-                        let motd2 = data2.motd?.clean ? (Array.isArray(data2.motd.clean) ? data2.motd.clean.join(" ") : data2.motd.clean).toLowerCase() : "";
-                        if (motd2.includes("offline") || motd2.includes("starting") || motd2.includes("aternos") || data2.players?.max === 0) {
-                            uiStarting();
-                            return;
-                        }
-                        const pList2 = data2.players?.list?.map(p => p.name || p) || [];
-                        uiOnline(data2.players?.online || 0, data2.players?.max || 20, data2.version, pList2);
-                        return;
-                    }
-                }
-            } catch (e) {
-                console.log("API 2 pas geçildi.");
-            }
+                const response = await fetch('https://api.mcstatus.io/v2/status/java/Mertix.aternos.me?cache=false');
+                if (!response.ok) { setOffline(); return; }
+                const data = await response.json();
 
-            // İki API de kapalı diyorsa
-            uiOffline();
+                // Gerçekten çevrim içi olması için sunucunun online olması ve max oyuncu kapasitesinin 0'dan büyük olması şart
+                if (data && data.online === true && data.players && data.players.max > 0 && !data.software) {
+                    if(heroDot) heroDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping";
+                    if(heroText) { heroText.textContent = "ÇEVRİMİÇİ"; heroText.className = "text-emerald-400 font-bold"; }
+                    if(statusOnline) { statusOnline.textContent = "ÇEVRİMİÇİ"; statusOnline.className = "text-xl font-bold text-emerald-400"; }
+                    if(statusPlayers) statusPlayers.textContent = `${data.players.online} / ${data.players.max}`;
+                    if(statusVersion) statusVersion.textContent = (data.version && data.version.name_clean) ? data.version.name_clean : "1.16.5 - 1.21x";
+
+                    if (playerListBox) {
+                        if (data.players.list && data.players.list.length > 0) {
+                            playerListBox.innerHTML = data.players.list.map(p => `<span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 text-emerald-400 font-mono text-sm">${p.name_clean || p.name || p}</span>`).join('');
+                        } else {
+                            playerListBox.innerHTML = '<span class="text-slate-400 italic">Sunucu aktif ancak şu an oyunda kimse yok.</span>';
+                        }
+                    }
+                } else {
+                    setOffline();
+                }
+            } catch (error) {
+                console.error("Status error:", error);
+                setOffline();
+            }
         }
 
         fetchServerStatus();
